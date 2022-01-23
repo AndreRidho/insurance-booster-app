@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insurance_boost_app/pages/packagepage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,7 +19,10 @@ class HomePage extends StatelessWidget {
                 text: 'Upload insurance document'),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => PackagePage()));
+            },
             child: const OptionCard(
                 asset: 'assets/images/gift.png',
                 text: 'View available packages'),
