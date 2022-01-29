@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "811379202118",
+    "project_id": "insurance-booster-app",
+    "storage_bucket": "insurance-booster-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811379202118:android:49936390f20f03454b9247",
+        "android_client_info": {
+          "package_name": "com.example.insurance_boost_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811379202118-49f3kr4487dmp3v1g9f22ji0h4876kvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGWFJeG82tUlQUBAbEulKz_CNzWULaNAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811379202118-49f3kr4487dmp3v1g9f22ji0h4876kvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811379202118:android:e3b9edfb1fa77d154b9247",
+        "android_client_info": {
+          "package_name": "com.example.insurance_boost_app2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811379202118-49f3kr4487dmp3v1g9f22ji0h4876kvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGWFJeG82tUlQUBAbEulKz_CNzWULaNAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811379202118-49f3kr4487dmp3v1g9f22ji0h4876kvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
