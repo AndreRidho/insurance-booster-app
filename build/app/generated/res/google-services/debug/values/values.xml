@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">811379202118-49f3kr4487dmp3v1g9f22ji0h4876kvo.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">811379202118</string>
+    <string name="google_api_key" translatable="false">AIzaSyCGWFJeG82tUlQUBAbEulKz_CNzWULaNAk</string>
+    <string name="google_app_id" translatable="false">1:811379202118:android:49936390f20f03454b9247</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCGWFJeG82tUlQUBAbEulKz_CNzWULaNAk</string>
+    <string name="google_storage_bucket" translatable="false">insurance-booster-app.appspot.com</string>
+    <string name="project_id" translatable="false">insurance-booster-app</string>
+</resources>
