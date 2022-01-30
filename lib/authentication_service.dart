@@ -13,7 +13,7 @@ class AuthenticationService {
   AuthenticationService(this._firebaseAuth);
 
   /// Changed to idTokenChanges as it updates depending on more cases.
-  Stream<User> get authStateChanges => _firebaseAuth.idTokenChanges();
+  Stream<User?> get authStateChanges => _firebaseAuth.idTokenChanges();
 
   /// This won't pop routes so you could do something like
   /// Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
@@ -33,7 +33,7 @@ class AuthenticationService {
           email: email, password: password);
       return "Signed in";
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      return "Sign in failed.";
     }
   }
 
@@ -48,7 +48,7 @@ class AuthenticationService {
           email: email, password: password);
       return "Signed up";
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      return "Sign up failed.";
     }
   }
 }
