@@ -153,12 +153,7 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-  Future signIn() async{
-    await FirebaseAuth.instance.signInWithEmailAndPassword
-      (email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
-  }
+ 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
