@@ -1,144 +1,187 @@
-import 'package:flutter/foundation.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:Login_ui/authentication_service.dart';
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:Login_ui/Widget/singinContainer.dart';
+import 'package:Login_ui/signup.dart';
+import 'package:flutter/foundation.dart';
 
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
+
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool _isObscure = true;
-  bool _isVisible = false;
+  Widget _backButton() {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(left: 0, top: 20, bottom: 10),
+              child: Icon(Icons.keyboard_arrow_left, color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-  fetchCredentials() {
-    var username = "username";
-    var password = "password123";
-    return [username, password];
+  Widget _usernameWidget() {
+    return Stack(
+      children: [
+        TextFormField(
+          controller: emailController,
+          keyboardType: TextInputType.name,
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            labelText: 'Email',
+            labelStyle: TextStyle(
+                color: Color.fromRGBO(173, 183, 192, 1),
+                fontWeight: FontWeight.bold),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color.fromRGBO(173, 183, 192, 1)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _passwordWidget() {
+    return Stack(
+      children: [
+        TextFormField(
+          controller: passwordController,
+          keyboardType: TextInputType.name,
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            labelText: 'Password',
+            labelStyle: TextStyle(
+                color: Color.fromRGBO(173, 183, 192, 1),
+                fontWeight: FontWeight.bold),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color.fromRGBO(173, 183, 192, 1)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _submitButton() {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: InkWell(
+        onTap: () {
+          // Navigator.push(
+          //     context, MaterialPageRoute(builder: (context) => SignUpPage()));
+        },
+        child:
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text(
+            'Sign in',
+            style: TextStyle(
+                color: Color.fromRGBO(76, 81, 93, 1),
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                height: 1.6),
+          ),
+          SizedBox.fromSize(
+            size: Size.square(70.0), // button width and height
+            child: ClipOval(
+              child: Material(
+                color: Color.fromRGBO(76, 81, 93, 1),
+                child: Icon(Icons.arrow_forward,
+                    color: Colors.white), // button color
+              ),
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget _createAccountLabel() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20),
+      alignment: Alignment.bottomCenter,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          InkWell(
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => SignUpPage())),
+            child: Text(
+              'Register',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                  decorationThickness: 2),
+            ),
+          ),
+          InkWell(
+            // onTap: () {
+            //   // Navigator.push(
+            //   //     context, MaterialPageRoute(builder: (context) => SignUpPage()));
+            // },
+            child: Text(
+              'Forgot Password',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                  decorationThickness: 2),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        reverse: true,
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 60,
-              width: 200,
-            ),
-
-            // Login text Widget
-            Center(
-              child: Container(
-
-                height: 200,
-                width: 400,
-                alignment: Alignment.center,
-                child: Text(
-                  "Login",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  // textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-
-            SizedBox(
-              height: 60,
-              width: 10,
-            ),
-
-            // Wrong Password text
-            Visibility(
-              visible: _isVisible,
-              maintainSize: true,
-              maintainAnimation: true,
-              maintainState: true,
-              child: Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  "Wrong credentials entered",
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 10,
-                  ),
-                ),
-              ),
-            ),
-
-            // Textfields for username and password fields
-            Container(
-              height: 140,
-              width: 530,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Colors.white),
+    final height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: SizedBox(
+        height: height,
+        child: Stack(
+          children: [
+            Positioned(
+                height: MediaQuery.of(context).size.height * 0.50,
+                child: SigninContainer()),
+            SingleChildScrollView(
               child: Column(
                 children: <Widget>[
-                  TextFormField(
-                    onTap: () {
-
-                    },
-                    controller: emailController, // Controller for Username
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Username",
-                        contentPadding: EdgeInsets.all(20)),
-                    onEditingComplete: () => FocusScope.of(context).nextFocus(),
-                  ),
-                  Divider(
-                    thickness: 3,
-                  ),
-                  TextFormField(
-                    onTap: () {
-                    },
-
-                    controller: passwordController, // Controller for Password
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Password",
-                        contentPadding: EdgeInsets.all(20),
-                        // Adding the visibility icon to toggle visibility of the password field
-                        suffixIcon: IconButton(
-                          icon: Icon(_isObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility),
-                          onPressed: () {
-
-                          },
-                        )),
-                    obscureText: _isObscure,
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        SizedBox(height: height * .55),
+                        _usernameWidget(),
+                        SizedBox(height: 20),
+                        _passwordWidget(),
+                        SizedBox(height: 30),
+                        _submitButton(),
+                        SizedBox(height: height * .050),
+                        _createAccountLabel(),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-
-            // Submit Button
-            Container(
-              width: 570,
-              height: 70,
-              padding: EdgeInsets.only(top: 20),
-              child: RaisedButton(
-                onPressed: () {
-                  context.read<AuthenticationService>().signIn(
-                    email: emailController.text.trim(),
-                    password: passwordController.text.trim(),
-                  );
-                },
-                child: Text("Sign in"),
-              ),
-            ),
+            Positioned(top: 60, left: 0, child: _backButton()),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
-
