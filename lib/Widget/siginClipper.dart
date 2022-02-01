@@ -16,8 +16,8 @@ class WaveClipperTwo extends CustomClipper<Path> {
     final path = Path()
       ..lineTo(0.0, size.height)
       ..quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-          firstEndPoint.dy, firstEndPoint.dy)..quadraticBezierTo(
-          secondControlPoint.dx, secondControlPoint.dy,
+          firstEndPoint.dy, firstEndPoint.dy)
+      ..quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
           secondEndPoint.dx, secondEndPoint.dy)
       ..lineTo(size.width, 0.0)
       ..close();
@@ -44,8 +44,8 @@ class WaveClipperThree extends CustomClipper<Path> {
     final path = Path()
       ..lineTo(0.0, size.height)
       ..quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-          firstEndPoint.dx, firstEndPoint.dy)..quadraticBezierTo(
-          secondControlPoint.dx, secondControlPoint.dy,
+          firstEndPoint.dx, firstEndPoint.dy)
+      ..quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
           secondEndPoint.dx, secondEndPoint.dy)
       ..lineTo(size.width, 0.0)
       ..close();
@@ -58,7 +58,6 @@ class WaveClipperThree extends CustomClipper<Path> {
   }
 }
 
-
 class CustomSelfClipper2 extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -66,7 +65,7 @@ class CustomSelfClipper2 extends CustomClipper<Path> {
     BezierCurveSection section1 = BezierCurveSection(
       start: Offset(size.width - 0, size.height - 120),
       top: Offset(size.width - 30, size.height - 90),
-      end: Offset(size.width  - 140, size.height - 230),
+      end: Offset(size.width - 140, size.height - 230),
     );
     BezierCurveSection section2 = BezierCurveSection(
       start: Offset(size.width - 110, size.height * 1.3),

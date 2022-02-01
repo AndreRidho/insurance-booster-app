@@ -1,8 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:Login_ui/Widget/singinContainer.dart';
 import 'package:Login_ui/signup.dart';
 import 'package:flutter/foundation.dart';
 
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Insurance Booster App',
+    home: SignInPage(),
+  ));
+}
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -84,7 +96,7 @@ class _SignInPageState extends State<SignInPage> {
           //     context, MaterialPageRoute(builder: (context) => SignUpPage()));
         },
         child:
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(
             'Sign in',
             style: TextStyle(

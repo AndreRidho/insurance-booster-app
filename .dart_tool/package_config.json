@@ -164,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "proste_bezier_curve",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/proste_bezier_curve-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "provider",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/provider-6.0.2",
       "packageUri": "lib/",
@@ -230,7 +236,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-01-30T11:10:19.054652Z",
+  "generated": "2022-02-01T14:02:11.627321Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }
