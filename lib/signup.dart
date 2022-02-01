@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:Login_ui/Widget/singinContainer.dart';
-import 'package:Login_ui/signup.dart';
-import 'package:flutter/foundation.dart';
+import 'package:Login_ui/Widget/signupContainer.dart';
+import 'package:Login_ui/signin.dart';
 
-
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class _SignUpPageState extends State<SignUpPage> {
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -33,20 +29,47 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Widget _usernameWidget() {
+  Widget _nameWidget() {
     return Stack(
       children: [
         TextFormField(
-          controller: emailController,
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
+            // hintText: 'Enter your full name',
+            labelText: 'Name',
+            labelStyle: TextStyle(
+                color: Color.fromRGBO(226, 222, 211, 1),
+                fontWeight: FontWeight.w500,
+                fontSize: 13),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Color.fromRGBO(226, 222, 211, 1),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _emailWidget() {
+    return Stack(
+      children: [
+        TextFormField(
+          keyboardType: TextInputType.name,
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+            // hintText: 'Enter your full name',
             labelText: 'Email',
             labelStyle: TextStyle(
-                color: Color.fromRGBO(173, 183, 192, 1),
-                fontWeight: FontWeight.bold),
+                color: Color.fromRGBO(226, 222, 211, 1),
+                fontWeight: FontWeight.w500,
+                fontSize: 13),
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Color.fromRGBO(173, 183, 192, 1)),
+              borderSide: BorderSide(
+                color: Color.fromRGBO(226, 222, 211, 1),
+              ),
             ),
           ),
         ),
@@ -58,16 +81,18 @@ class _SignInPageState extends State<SignInPage> {
     return Stack(
       children: [
         TextFormField(
-          controller: passwordController,
           keyboardType: TextInputType.name,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
             labelText: 'Password',
             labelStyle: TextStyle(
-                color: Color.fromRGBO(173, 183, 192, 1),
-                fontWeight: FontWeight.bold),
+                color: Color.fromRGBO(226, 222, 211, 1),
+                fontWeight: FontWeight.w500,
+                fontSize: 13),
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Color.fromRGBO(173, 183, 192, 1)),
+              borderSide: BorderSide(
+                color: Color.fromRGBO(226, 222, 211, 1),
+              ),
             ),
           ),
         ),
@@ -86,9 +111,9 @@ class _SignInPageState extends State<SignInPage> {
         child:
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(
-            'Sign in',
+            'Sign up',
             style: TextStyle(
-                color: Color.fromRGBO(76, 81, 93, 1),
+                color: Colors.white,
                 fontSize: 25,
                 fontWeight: FontWeight.w500,
                 height: 1.6),
@@ -108,40 +133,23 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Widget _createAccountLabel() {
+  Widget _createLoginLabel() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
-      alignment: Alignment.bottomCenter,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          InkWell(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => SignUpPage())),
-            child: Text(
-              'Register',
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
-                  decorationThickness: 2),
-            ),
+      alignment: Alignment.bottomLeft,
+      child: InkWell(
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SignInPage())),
+        child: Text(
+          'Login',
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            decoration: TextDecoration.underline,
+            decorationThickness: 2,
           ),
-          InkWell(
-            // onTap: () {
-            //   // Navigator.push(
-            //   //     context, MaterialPageRoute(builder: (context) => SignUpPage()));
-            // },
-            child: Text(
-              'Forgot Password',
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
-                  decorationThickness: 2),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -155,8 +163,8 @@ class _SignInPageState extends State<SignInPage> {
         child: Stack(
           children: [
             Positioned(
-                height: MediaQuery.of(context).size.height * 0.50,
-                child: SigninContainer()),
+                height: MediaQuery.of(context).size.height * 1,
+                child: SignUpContainer()),
             SingleChildScrollView(
               child: Column(
                 children: <Widget>[
@@ -164,14 +172,16 @@ class _SignInPageState extends State<SignInPage> {
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        SizedBox(height: height * .55),
-                        _usernameWidget(),
+                        SizedBox(height: height * .4),
+                        _nameWidget(),
+                        SizedBox(height: 20),
+                        _emailWidget(),
                         SizedBox(height: 20),
                         _passwordWidget(),
-                        SizedBox(height: 30),
+                        SizedBox(height: 80),
                         _submitButton(),
                         SizedBox(height: height * .050),
-                        _createAccountLabel(),
+                        _createLoginLabel(),
                       ],
                     ),
                   ),

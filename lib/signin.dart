@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:Login_ui/Widget/singinContainer.dart';
 import 'package:Login_ui/signup.dart';
@@ -76,6 +77,7 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   Widget _submitButton() {
+
     return Align(
       alignment: Alignment.centerRight,
       child: InkWell(
@@ -84,16 +86,22 @@ class _SignInPageState extends State<SignInPage> {
           //     context, MaterialPageRoute(builder: (context) => SignUpPage()));
         },
         child:
+
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+
           Text(
             'Sign in',
+
             style: TextStyle(
                 color: Color.fromRGBO(76, 81, 93, 1),
                 fontSize: 25,
                 fontWeight: FontWeight.w500,
                 height: 1.6),
+
           ),
+
           SizedBox.fromSize(
+
             size: Size.square(70.0), // button width and height
             child: ClipOval(
               child: Material(
@@ -145,7 +153,7 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -172,8 +180,10 @@ class _SignInPageState extends State<SignInPage> {
                         _submitButton(),
                         SizedBox(height: height * .050),
                         _createAccountLabel(),
+
                       ],
                     ),
+
                   ),
                 ],
               ),
@@ -182,6 +192,9 @@ class _SignInPageState extends State<SignInPage> {
           ],
         ),
       ),
+
     );
+
+
   }
 }
