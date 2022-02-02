@@ -1,4 +1,4 @@
-#Tue Feb 01 22:03:19 SGT 2022
+#Wed Feb 02 18:35:15 SGT 2022
 base.0=C\:\\Users\\mbrid\\VSMobileProjects\\insurance booster app\\insurance_boost_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
