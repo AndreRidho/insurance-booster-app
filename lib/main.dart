@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Login_ui/Widget/singinContainer.dart';
 import 'package:Login_ui/signup.dart';
-import 'package:Login_ui/signin.dart';
 import 'package:Login_ui/authentication_service.dart';
 import 'package:Login_ui/authenticate_user.dart';
 import 'package:flutter/foundation.dart';
