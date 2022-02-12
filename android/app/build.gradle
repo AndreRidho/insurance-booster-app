@@ -46,6 +46,7 @@ android {
         applicationId "com.example.insurance_boost_app2"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -66,6 +67,7 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:29.0.4')
+    implementation 'com.android.support:multidex:1.0.3'
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
