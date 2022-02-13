@@ -14,7 +14,7 @@ Future main() async {
   runApp(StreamProvider<User?>.value(
     initialData: null,
     value: AuthService().user,
-    child: MaterialApp(
+    child: const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Insurance Booster App',
       home: Wrapper(),

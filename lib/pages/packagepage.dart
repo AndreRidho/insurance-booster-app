@@ -33,38 +33,58 @@ class PackagePage extends StatelessWidget {
                   shrinkWrap: true,
                   children: snapshot.data!.docs.map((package) {
                     return Center(
-                      child: Card(
-                        child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: RichText(
-                                text: TextSpan(
-                                    style: const TextStyle(
-                                      fontSize: 14.0,
-                                      color: Colors.black,
-                                    ),
-                                    children: <TextSpan>[
-                                  TextSpan(
-                                      text: package['name'] + '\n\n',
+                      child: GestureDetector(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                    title: const Text('Congratulations!'),
+                                    content: Text("You have subscribed to the \"" +
+                                        package["name"] +
+                                        "\" package. You will now be awarded with " +
+                                        package["points"].toString() +
+                                        " reward points, which you can redeem after three months."),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: const Text('OK'))
+                                    ],
+                                  ));
+                        },
+                        child: Card(
+                          child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: RichText(
+                                  text: TextSpan(
                                       style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  TextSpan(
-                                      text: package['description'] +
-                                          '\n\nReward points given: '),
-                                  TextSpan(
-                                      text: package['points'].toString(),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold))
-                                ]))
-                            // Text(
-                            //   package['name'],
-                            //   style: TextStyle(),
-                            // ),
-                            // const SizedBox(height: 10),
-                            // Text(package['description']),
-                            // Text('Reward points given: ' +
-                            //     package['points'].toString())
+                                        fontSize: 14.0,
+                                        color: Colors.black,
+                                      ),
+                                      children: <TextSpan>[
+                                    TextSpan(
+                                        text: package['name'] + '\n\n',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    TextSpan(
+                                        text: package['description'] +
+                                            '\n\nReward points given: '),
+                                    TextSpan(
+                                        text: package['points'].toString(),
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold))
+                                  ]))
+                              // Text(
+                              //   package['name'],
+                              //   style: TextStyle(),
+                              // ),
+                              // const SizedBox(height: 10),
+                              // Text(package['description']),
+                              // Text('Reward points given: ' +
+                              //     package['points'].toString())
 
-                            ),
+                              ),
+                        ),
                       ),
                     );
                   }).toList(),
