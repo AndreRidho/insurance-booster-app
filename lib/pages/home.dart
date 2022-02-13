@@ -20,8 +20,8 @@ class HomePage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => PackagePage()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => PackagePage()));
             },
             child: const OptionCard(
                 asset: 'assets/images/gift.png',
