@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insurance_boost_app/pages/authentication/register.dart';
 import 'package:insurance_boost_app/pages/authentication/sign_in.dart';
-import 'package:insurance_boost_app/pages/home.dart';
 
 class Authenticate extends StatefulWidget {
   @override

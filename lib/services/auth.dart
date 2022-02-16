@@ -8,6 +8,10 @@ class AuthService {
     return _auth.authStateChanges();
   }
 
+  String? get email {
+    return _auth.currentUser!.email;
+  }
+
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(

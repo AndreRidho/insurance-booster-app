@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:insurance_boost_app/services/auth.dart';
 
 class PackagePage extends StatelessWidget {
   PackagePage({Key? key}) : super(key: key);
@@ -46,8 +47,36 @@ class PackagePage extends StatelessWidget {
                                         " reward points, which you can redeem after three months."),
                                     actions: [
                                       TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(context),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+
+                                            CollectionReference rewards =
+                                                FirebaseFirestore.instance
+                                                    .collection('rewards');
+
+                                            final auth = AuthService();
+
+                                            var dateNow = DateTime.now();
+
+                                            rewards.add({
+                                              'userId': auth.email,
+                                              'amount': package["points"],
+                                              'dateToRedeem': DateTime(
+                                                  dateNow.year,
+                                                  dateNow.month + 3,
+                                                  dateNow.day)
+                                            });
+
+                                            DocumentReference packageToDelete =
+                                                FirebaseFirestore.instance.doc(
+                                                    'packages/' + package.id);
+
+                                            FirebaseFirestore.instance
+                                                .runTransaction(
+                                                    (transaction) async =>
+                                                        await transaction.delete(
+                                                            packageToDelete));
+                                          },
                                           child: const Text('OK'))
                                     ],
                                   ));
@@ -73,17 +102,7 @@ class PackagePage extends StatelessWidget {
                                         text: package['points'].toString(),
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold))
-                                  ]))
-                              // Text(
-                              //   package['name'],
-                              //   style: TextStyle(),
-                              // ),
-                              // const SizedBox(height: 10),
-                              // Text(package['description']),
-                              // Text('Reward points given: ' +
-                              //     package['points'].toString())
-
-                              ),
+                                  ]))),
                         ),
                       ),
                     );

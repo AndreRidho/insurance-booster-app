@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:insurance_boost_app/pages/home.dart';
 import 'package:insurance_boost_app/services/auth.dart';
 import 'package:insurance_boost_app/wrapper.dart';
 import 'package:provider/provider.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:insurance_boost_app/pages/authentication/authenticate.dart';
-import 'package:insurance_boost_app/pages/packagepage.dart';
+import 'package:insurance_boost_app/pages/home/packagepage.dart';
+import 'package:insurance_boost_app/pages/home/reward.dart';
 import 'package:insurance_boost_app/services/auth.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,6 +36,14 @@ class _HomePageState extends State<HomePage> {
             child: const OptionCard(
                 asset: 'assets/images/gift.png',
                 text: 'View available packages'),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => RewardPage()));
+            },
+            child: const OptionCard(
+                asset: 'assets/images/money.png', text: 'Reward points'),
           ),
           GestureDetector(
             onTap: () {},
