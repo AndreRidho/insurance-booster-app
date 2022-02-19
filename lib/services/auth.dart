@@ -32,10 +32,7 @@ class AuthService {
           FirebaseFirestore.instance.collection('users');
 
       users
-          .add({
-            'email': email,
-            'password': password,
-          })
+          .add({'email': email, 'password': password, 'wasReferred': false})
           .then((value) => print("User Added"))
           .catchError((error) => print("Failed to add user: $error"));
 

@@ -66,6 +66,11 @@ class _RegisterState extends State<Register> {
                               'Please enter valid credentials (existing e-mail, password more than 6 characters)';
                         });
                       }
+                    } else {
+                      setState(() {
+                        error =
+                            'Please enter valid credentials (existing e-mail, password more than 6 characters)';
+                      });
                     }
                   }),
               const SizedBox(height: 40.0),

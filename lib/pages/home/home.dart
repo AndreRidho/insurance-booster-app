@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:insurance_boost_app/pages/authentication/authenticate.dart';
 import 'package:insurance_boost_app/pages/home/packagepage.dart';
+import 'package:insurance_boost_app/pages/home/referral.dart';
 import 'package:insurance_boost_app/pages/home/reward.dart';
 import 'package:insurance_boost_app/services/auth.dart';
 
@@ -39,14 +40,15 @@ class _HomePageState extends State<HomePage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => RewardPage()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const RewardPage()));
             },
             child: const OptionCard(
                 asset: 'assets/images/money.png', text: 'Reward points'),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const ReferralPage())),
             child: const OptionCard(
                 asset: 'assets/images/exchange.png', text: 'Refer a friend'),
           ),

@@ -15,7 +15,7 @@ class PackagePage extends StatelessWidget {
         title: const Text("Available Packages"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: StreamBuilder(
           stream: packages,
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -36,6 +36,27 @@ class PackagePage extends StatelessWidget {
                     return Center(
                       child: GestureDetector(
                         onTap: () {
+                          CollectionReference rewards =
+                              FirebaseFirestore.instance.collection('rewards');
+
+                          final auth = AuthService();
+
+                          var dateNow = DateTime.now();
+
+                          rewards.add({
+                            'userId': auth.email,
+                            'amount': package["points"],
+                            'dateToRedeem': DateTime(
+                                dateNow.year, dateNow.month + 3, dateNow.day)
+                          });
+
+                          DocumentReference packageToDelete = FirebaseFirestore
+                              .instance
+                              .doc('packages/' + package.id);
+
+                          FirebaseFirestore.instance.runTransaction(
+                              (transaction) async =>
+                                  await transaction.delete(packageToDelete));
                           showDialog(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -49,33 +70,6 @@ class PackagePage extends StatelessWidget {
                                       TextButton(
                                           onPressed: () {
                                             Navigator.pop(context);
-
-                                            CollectionReference rewards =
-                                                FirebaseFirestore.instance
-                                                    .collection('rewards');
-
-                                            final auth = AuthService();
-
-                                            var dateNow = DateTime.now();
-
-                                            rewards.add({
-                                              'userId': auth.email,
-                                              'amount': package["points"],
-                                              'dateToRedeem': DateTime(
-                                                  dateNow.year,
-                                                  dateNow.month + 3,
-                                                  dateNow.day)
-                                            });
-
-                                            DocumentReference packageToDelete =
-                                                FirebaseFirestore.instance.doc(
-                                                    'packages/' + package.id);
-
-                                            FirebaseFirestore.instance
-                                                .runTransaction(
-                                                    (transaction) async =>
-                                                        await transaction.delete(
-                                                            packageToDelete));
                                           },
                                           child: const Text('OK'))
                                     ],
@@ -109,8 +103,7 @@ class PackagePage extends StatelessWidget {
                   }).toList(),
                 );
               } on Exception catch (e) {
-                print(e);
-                return const Text("Something went wrong.");
+                return Text("Something went wrong: " + e.toString());
               }
             }
 
