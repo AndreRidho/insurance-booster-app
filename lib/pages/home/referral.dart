@@ -27,7 +27,8 @@ class _ReferralPageState extends State<ReferralPage> {
     const subject = 'New Insurance Booster App!';
     const text =
         'Have you ever wanted to take advantage of the benefits you can get with your insurance packages, but could not be bothered with going through long pages of terms and conditions? Our new App will fix that problem for you! ';
-    final urlShare = Uri.encodeComponent('www.google.com');
+    final urlShare =
+        Uri.encodeComponent('https://sartajsajidupm.wixsite.com/website');
     final urls = {
       SocialMedia.facebook:
           'https://www.facebook.com/sharer.php?u=$urlShare&t=$text',
