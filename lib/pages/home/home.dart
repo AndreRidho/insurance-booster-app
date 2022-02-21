@@ -3,6 +3,7 @@ import 'package:insurance_boost_app/pages/authentication/authenticate.dart';
 import 'package:insurance_boost_app/pages/home/packagepage.dart';
 import 'package:insurance_boost_app/pages/home/referral.dart';
 import 'package:insurance_boost_app/pages/home/reward.dart';
+import 'package:insurance_boost_app/pages/home/uploadpage.dart';
 import 'package:insurance_boost_app/services/auth.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,7 +25,10 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => UploadPage()));
+            },
             child: const OptionCard(
                 asset: 'assets/images/up-arrow.png',
                 text: 'Upload insurance document'),

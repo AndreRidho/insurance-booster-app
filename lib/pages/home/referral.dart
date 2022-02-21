@@ -52,7 +52,7 @@ class _ReferralPageState extends State<ReferralPage> {
         FirebaseFirestore.instance.collection('users');
 
     CollectionReference rewardsUpdate =
-        FirebaseFirestore.instance.collection('users');
+        FirebaseFirestore.instance.collection('rewards');
 
     var referredUsers =
         await usersUpdate.where('email', isEqualTo: referred).get();

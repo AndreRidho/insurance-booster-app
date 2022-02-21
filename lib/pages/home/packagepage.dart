@@ -5,8 +5,10 @@ import 'package:insurance_boost_app/services/auth.dart';
 class PackagePage extends StatelessWidget {
   PackagePage({Key? key}) : super(key: key);
 
-  final Stream<QuerySnapshot> packages =
-      FirebaseFirestore.instance.collection('packages').snapshots();
+  final Stream<QuerySnapshot> packages = FirebaseFirestore.instance
+      .collection('packages')
+      .where('user', isEqualTo: AuthService().email)
+      .snapshots();
 
   @override
   Widget build(BuildContext context) {
